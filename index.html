@@ -349,7 +349,7 @@
     </div>
     <script>
         function markshow(fileName) {
-            var markdownURL = 'samples/' + fileName + '.md'
+            var markdownURL = 'kotlin-linq-101-samples/samples/' + fileName + '.md'
             $.get(markdownURL, function(markdownContent) {
                 var converter = new showdown.Converter();
                 var htmlContent = converter.makeHtml(markdownContent);
