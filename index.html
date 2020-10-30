@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINQSamples | LINQ 101 Query and Lambda Expression Samples</title>
+    <meta name="description"
+        content="LINQ 101 Code Samples in kotlin shown with both Lambda. Examples for all Operators such as Where, Select and Join based on LINQ-To-Objects." />
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+    <link href="/css/content.css" rel="stylesheet" />
+    <script src="/js/modernizr.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/index.js"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js" integrity="sha512-L03kznCrNOfVxOUovR6ESfCz9Gfny7gihUX/huVbQB9zjODtYpxaVtIaAkpetoiyV2eqWbvxMH9fiSv5enX7bw==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">LINQ 101 With Kotlin</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Samples</a></li>
+                    <li><a href="javascript:void(0);">About</a></li>
+                </ul>
+
+                <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+                    <div class="form-group" id="findOperatorGroup">
+                        <input type="text" id="findOperator" class="form-control typeahead"
+                            placeholder="Find LINQ Operator">
+                    </div>
+                    <button type="submit" id="findOperatorSubmit" class="btn btn-default">Go!</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div id="content" class="row boxed">
+            <div class="col-md-5 col-sm-5 main-menu">
+                <div class="btn-group btn-group-justified" role="group" aria-label="..." style="width:100%">
+
+                    <a href="javascript:void(0);" class="btn btn-default square active" id="intro" 
+                       onclick="markshow('intro');return false;">LINQ 101</a>
+                </div>
+
+                <div id="main-menu-inside" class="list-group panel">
+
+                    <a href="/" id="aggregation" class="list-group-item square"
+                        data-parent="#main-menu-inside">
+                        <h4 class="list-group-item-heading">Aggregation <i class="fa fa-caret-right"></i></h4>
+                        <p class="list-group-item-text">Aggregate, Average, Count, LongCount, Max, Min, Sum</p>
+                    </a>
+                    <div class='collapse' id='container-aggregation'> <a href="#"
+                            class="list-group-item square" onclick="markshow('aggregate-simple');return false;">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Aggregate (simple)
+                        </a>
+                        <a href="/linq-to-objects/aggregation/Aggregate-seed" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Aggregate (seed)
+                        </a>
+                        <a href="/linq-to-objects/aggregation/Average" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Average
+                        </a>
+                        <a href="/linq-to-objects/aggregation/Count" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count
+                        </a>
+                        <a href="/linq-to-objects/aggregation/LongCount" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LongCount
+                        </a>
+                        <a href="/linq-to-objects/aggregation/Max" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Max
+                        </a>
+                        <a href="/linq-to-objects/aggregation/Min" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Min
+                        </a>
+                        <a href="/linq-to-objects/aggregation/Sum" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sum
+                        </a>
+                    </div> <a href="/linq-to-objects/conversion" id="conversion" class="list-group-item square"
+                        data-parent="#main-menu-inside">
+                        <h4 class="list-group-item-heading">Conversion <i class="fa fa-caret-right"></i></h4>
+                        <p class="list-group-item-text">AsEnumerable, Cast, OfType, ToArray, ToDictionary, ToList,
+                            ToLookup</p>
+                    </a>
+                    <div class='collapse' id='container-conversion'> <a href="/linq-to-objects/conversion/AsEnumerable"
+                            class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AsEnumerable
+                        </a>
+                        <a href="/linq-to-objects/conversion/Cast" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cast
+                        </a>
+                        <a href="/linq-to-objects/conversion/OfType" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OfType
+                        </a>
+                        <a href="/linq-to-objects/conversion/ToArray" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ToArray
+                        </a>
+                        <a href="/linq-to-objects/conversion/ToDictionary" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ToDictionary (simple)
+                        </a>
+                        <a href="/linq-to-objects/conversion/ToDictionary-conditional" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ToDictionary (conditional)
+                        </a>
+                        <a href="/linq-to-objects/conversion/ToList" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ToList
+                        </a>
+                        <a href="/linq-to-objects/conversion/ToLookup" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ToLookup
+                        </a>
+                    </div> <a href="/linq-to-objects/element" id="element" class="list-group-item square"
+                        data-parent="#main-menu-inside">
+                        <h4 class="list-group-item-heading">Element <i class="fa fa-caret-right"></i></h4>
+                        <p class="list-group-item-text">ElementAt, ElementAtOrDefault, First, FirstOrDefault, Last,
+                            LastOrDefault, Single, SingleOrDefault</p>
+                    </a>
+                    <div class='collapse' id='container-element'> <a href="/linq-to-objects/element/ElementAt"
+                            class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ElementAt
+                        </a>
+                        <a href="/linq-to-objects/element/ElementAtOrDefault" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ElementAtOrDefault
+                        </a>
+                        <a href="/linq-to-objects/element/First" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;First (simple)
+                        </a>
+                        <a href="/linq-to-objects/element/First-conditional" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;First (conditional)
+                        </a>
+                        <a href="/linq-to-objects/element/FirstOrDefault" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FirstOrDefault
+                        </a>
+                        <a href="/linq-to-objects/element/Last" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last
+                        </a>
+                        <a href="/linq-to-objects/element/LastOrDefault" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LastOrDefault (simple)
+                        </a>
+                        <a href="/linq-to-objects/element/LastOrDefault-conditional" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LastOrDefault (conditional)
+                        </a>
+                        <a href="/linq-to-objects/element/Single" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Single
+                        </a>
+                        <a href="/linq-to-objects/element/SingleOrDefault" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SingleOrDefault
+                        </a>
+                    </div> <a href="/linq-to-objects/generation" id="generation" class="list-group-item square"
+                        data-parent="#main-menu-inside">
+                        <h4 class="list-group-item-heading">Generation <i class="fa fa-caret-right"></i></h4>
+                        <p class="list-group-item-text">DefaultIfEmpty, Empty, Range, Repeat</p>
+                    </a>
+                    <div class='collapse' id='container-generation'> <a
+                            href="/linq-to-objects/generation/DefaultIfEmpty" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DefaultIfEmpty (simple)
+                        </a>
+                        <a href="/linq-to-objects/generation/DefaultIfEmpty-defaultValue"
+                            class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DefaultIfEmpty (default value)
+                        </a>
+                        <a href="/linq-to-objects/generation/Empty" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Empty
+                        </a>
+                        <a href="/linq-to-objects/generation/Range" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Range
+                        </a>
+                        <a href="/linq-to-objects/generation/Repeat" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Repeat
+                        </a>
+                    </div> <a href="/linq-to-objects/grouping" id="grouping" class="list-group-item square"
+                        data-parent="#main-menu-inside">
+                        <h4 class="list-group-item-heading">Grouping <i class="fa fa-caret-right"></i></h4>
+                        <p class="list-group-item-text">GroupBy</p>
+                    </a>
+                    <div class='collapse' id='container-grouping'> <a href="/linq-to-objects/grouping/GroupBy"
+                            class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GroupBy
+                        </a>
+                    </div> <a href="/linq-to-objects/join" id="join" class="list-group-item square"
+                        data-parent="#main-menu-inside">
+                        <h4 class="list-group-item-heading">Join <i class="fa fa-caret-right"></i></h4>
+                        <p class="list-group-item-text">GroupJoin, Join</p>
+                    </a>
+                    <div class='collapse' id='container-join'> <a href="/linq-to-objects/join/GroupJoin"
+                            class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GroupJoin (left outer join)
+                        </a>
+                        <a href="/linq-to-objects/join/Join" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Join (inner join)
+                        </a>
+                    </div> <a href="/linq-to-objects/ordering" id="ordering" class="list-group-item square"
+                        data-parent="#main-menu-inside">
+                        <h4 class="list-group-item-heading">Ordering <i class="fa fa-caret-right"></i></h4>
+                        <p class="list-group-item-text">OrderBy, OrderByDescending, Reverse, ThenBy, ThenByDescending
+                        </p>
+                    </a>
+                    <div class='collapse' id='container-ordering'> <a href="/linq-to-objects/ordering/OrderBy-numbers"
+                            class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OrderBy (simple - numbers)
+                        </a>
+                        <a href="/linq-to-objects/ordering/OrderBy-dates" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OrderBy (simple - dates)
+                        </a>
+                        <a href="/linq-to-objects/ordering/OrderBy-objects" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OrderBy (simple - objects)
+                        </a>
+                        <a href="/linq-to-objects/ordering/OrderByDescending" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OrderByDescending
+                        </a>
+                        <a href="/linq-to-objects/ordering/Reverse" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reverse
+                        </a>
+                        <a href="/linq-to-objects/ordering/ThenBy" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ThenBy
+                        </a>
+                        <a href="/linq-to-objects/ordering/ThenByDescending" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ThenByDescending
+                        </a>
+                    </div> <a href="/linq-to-objects/other" id="other" class="list-group-item square"
+                        data-parent="#main-menu-inside">
+                        <h4 class="list-group-item-heading">Other <i class="fa fa-caret-right"></i></h4>
+                        <p class="list-group-item-text">Concat, SequenceEqual, Zip</p>
+                    </a>
+                    <div class='collapse' id='container-other'> <a href="/linq-to-objects/other/Concat-numbers"
+                            class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Concat (simple - numbers)
+                        </a>
+                        <a href="/linq-to-objects/other/Concat-strings" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Concat (simple - strings)
+                        </a>
+                        <a href="/linq-to-objects/other/SequenceEqual" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SequenceEqual
+                        </a>
+                        <a href="/linq-to-objects/other/Zip" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Zip
+                        </a>
+                    </div> <a href="/linq-to-objects/partitioning" id="partitioning" class="list-group-item square"
+                        data-parent="#main-menu-inside">
+                        <h4 class="list-group-item-heading">Partitioning <i class="fa fa-caret-right"></i></h4>
+                        <p class="list-group-item-text">Skip, SkipWhile, Take, TakeWhile</p>
+                    </a>
+                    <div class='collapse' id='container-partitioning'> <a href="/linq-to-objects/partitioning/Skip"
+                            class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Skip
+                        </a>
+                        <a href="/linq-to-objects/partitioning/SkipWhile" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SkipWhile
+                        </a>
+                        <a href="/linq-to-objects/partitioning/Take" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Take
+                        </a>
+                        <a href="/linq-to-objects/partitioning/TakeWhile" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TakeWhile
+                        </a>
+                    </div> <a href="/linq-to-objects/projection" id="projection" class="list-group-item square"
+                        data-parent="#main-menu-inside">
+                        <h4 class="list-group-item-heading">Projection <i class="fa fa-caret-right"></i></h4>
+                        <p class="list-group-item-text">Select, SelectMany</p>
+                    </a>
+                    <div class='collapse' id='container-projection'> <a href="/linq-to-objects/projection/Select"
+                            class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select (simple)
+                        </a>
+                        <a href="/linq-to-objects/projection/Select-anonymousType" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select (anonymous type)
+                        </a>
+                        <a href="/linq-to-objects/projection/Select-indexed" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select (indexed)
+                        </a>
+                        <a href="/linq-to-objects/projection/SelectMany" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SelectMany (cross join)
+                        </a>
+                    </div> <a href="/linq-to-objects/quantifiers" id="quantifiers" class="list-group-item square"
+                        data-parent="#main-menu-inside">
+                        <h4 class="list-group-item-heading">Quantifiers <i class="fa fa-caret-right"></i></h4>
+                        <p class="list-group-item-text">All, Any, Contains</p>
+                    </a>
+                    <div class='collapse' id='container-quantifiers'> <a href="/linq-to-objects/quantifiers/All"
+                            class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All
+                        </a>
+                        <a href="/linq-to-objects/quantifiers/Any" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Any
+                        </a>
+                        <a href="/linq-to-objects/quantifiers/Contains" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contains
+                        </a>
+                    </div> <a href="/linq-to-objects/restriction" id="restriction" class="list-group-item square"
+                        data-parent="#main-menu-inside">
+                        <h4 class="list-group-item-heading">Restriction <i class="fa fa-caret-right"></i></h4>
+                        <p class="list-group-item-text">Where</p>
+                    </a>
+                    <div class='collapse' id='container-restriction'> <a
+                            href="/linq-to-objects/restriction/Where-numbers" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Where (simple - numbers)
+                        </a>
+                        <a href="/linq-to-objects/restriction/Where-objects" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Where (simple - objects)
+                        </a>
+                        <a href="/linq-to-objects/restriction/Where-indexed" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Where (indexed)
+                        </a>
+                    </div> <a href="/linq-to-objects/set" id="set" class="list-group-item square"
+                        data-parent="#main-menu-inside">
+                        <h4 class="list-group-item-heading">Set <i class="fa fa-caret-right"></i></h4>
+                        <p class="list-group-item-text">Distinct, Except, Intersect, Union</p>
+                    </a>
+                    <div class='collapse' id='container-set'> <a href="/linq-to-objects/set/Distinct"
+                            class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Distinct
+                        </a>
+                        <a href="/linq-to-objects/set/Except" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Except
+                        </a>
+                        <a href="/linq-to-objects/set/Intersect" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Intersect
+                        </a>
+                        <a href="/linq-to-objects/set/Union" class="list-group-item square">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Union
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-7 col-sm-7 main-content hidden-xs">
+                <div id="markdownContent">
+                </div>
+            </div>
+        </div>
+        <hr />
+        <footer class="text-center">
+            <p>&copy; 2020 - codeyu.com | Supported and developed by <a href="codeyu.com">codeyu</a></p>
+        </footer>
+    </div>
+    <script>
+        function markshow(fileName) {
+            var markdownURL = 'samples/' + fileName + '.md'
+            $.get(markdownURL, function(markdownContent) {
+                var converter = new showdown.Converter();
+                var htmlContent = converter.makeHtml(markdownContent);
+                $("div#markdownContent").html(htmlContent);
+            });
+        }
+        $(document).ready(function() {
+            // Load the Markdown file and convert it to HTML for display
+            markshow('intro')
+        });
+        
+    </script>
+</body>
+
+</html>
