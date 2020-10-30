@@ -158,7 +158,7 @@ $(document).ready(function() {
     n = [];
     t = [];
     $.ajax({
-        url: "/operators.json",
+        url: "kotlin-linq-101-samples/operators.json",
         type: "GET",
         contentType: "application/json",
         success: function(result) {
